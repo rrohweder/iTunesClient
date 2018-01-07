@@ -12,7 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+/*
+        let searchEndpoint = Itunes.search(term: "Taylor Swift", media: .music(entity: .musicArtist, attribute: .artistTerm))
+        let lookupEndpoint = Itunes.lookup(id: 159260351, entity: MusicEntity.album)
+ */
     }
 
     override func didReceiveMemoryWarning() {
