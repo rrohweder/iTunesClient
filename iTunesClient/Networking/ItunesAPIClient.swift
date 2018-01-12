@@ -51,7 +51,8 @@ class ItunesAPIClient {
     // Look up songs by the album ID:
     // https://itunes.apple.com/lookup?id=907242701&entity=song
     
-    func lookupAlbum(with id: Int, completion: @escaping (Album?, ItunesError?) -> Void) {
+    func lookupAlbum(withID id: Int, completion: @escaping (Album?, ItunesError?) -> Void) {
+        
         let endpoint = Itunes.lookup(id: id, entity: MusicEntity.song)
         performRequest(with: endpoint) { results, error in
             guard let results = results else {

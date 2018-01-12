@@ -38,12 +38,15 @@ class AlbumDetailController: UITableViewController {
     
     func configure(with album: Album) {
         let viewModel = AlbumDetailViewModel(album: album)
-        
-        // TODO: Add implementation for artworkView
-        
         albumTitleLabel.text = viewModel.title
         albumGenreLabel.text = viewModel.genre
         albumReleaseDateLabel.text = viewModel.releaseDate
+        
+        // hmmmm - the artwork is in a DIFFERENT album object? Or just not set appropriately?
+        // correct image doesn't appear...
+        artworkView.image = album.artworkState == .downloaded ? album.artwork! : #imageLiteral(resourceName: "AlbumPlaceholder") // placeholder
+        
+
     }
 
 }

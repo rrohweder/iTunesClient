@@ -22,7 +22,10 @@ class AlbumListController: UITableViewController {
         }
     }
     
-    var dataSource = AlbumListDataSource(albums: [])
+    lazy var dataSource: AlbumListDataSource = {
+        return AlbumListDataSource(albums: [], tableView: self.tableView)
+    }()
+    
     let client = ItunesAPIClient()
 
     override func viewDidLoad() {
@@ -46,8 +49,8 @@ class AlbumListController: UITableViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 let selectedAlbum = dataSource.album(at: selectedIndexPath)
                 let albumDetailController = segue.destination as! AlbumDetailController
-                    client.lookupAlbum(with: selectedAlbum.id) { album, error in
-                        albumDetailController.album = album
+                client.lookupAlbum(withID: selectedAlbum.id) { selectedAlbum, error in
+                        albumDetailController.album = selectedAlbum
                         albumDetailController.tableView.reloadData()
                 }
             }

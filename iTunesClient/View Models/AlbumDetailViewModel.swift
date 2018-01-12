@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct AlbumDetailViewModel {
     let title: String

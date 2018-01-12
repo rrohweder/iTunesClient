@@ -7,6 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
+enum AlbumArtworkState {
+    case placeholder
+    case downloaded
+    case failed
+}
 
 class Album {
     let id: Int
@@ -19,6 +26,9 @@ class Album {
     let releaseDate: Date
     let primaryGenre: Genre
     var songs = [Song]()
+    var artwork: UIImage?
+    var artworkState = AlbumArtworkState.placeholder
+    
     
     init(id: Int, artistName: String, name: String, censoredName: String, artworkUrl: String, isExplicit: Bool, numberOfTracks: Int, releaseDate: Date, primaryGenre: Genre, songs: [Song]) {
         self.id = id
@@ -68,13 +78,7 @@ extension Album {
         let isExplicit = isExplicitValue == "notExplicit" ? false : true
         
         self.init(id: idValue, artistName: artistNameValue, name: nameValue, censoredName: censoredNameValue, artworkUrl: artworkUrlString, isExplicit: isExplicit, numberOfTracks: numberOfTracksValue, releaseDate: releaseDateValue, primaryGenre: primaryGenreValue, songs: [])
-/*
-         was getting this error when compiling at the 12:20 in "Searching For Artists" video:
- 
-        Cannot invoke 'Album.init' with an argument list of type '(id: Int, artistName: String, name: String, censoredName: String, artworkUrl: String, isExplicit: Bool, numberOfTracks: Int, releaseDate: Date, primaryGenre: Genre)'
- 
-        was missing the "songs" parameter in the self.init() call.  Added it with an empty array, but not sure that is correct... missed something in the videos?
- */
+
     }
     
 }
